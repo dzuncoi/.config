@@ -1,0 +1,20 @@
+~/.config/nvim/..
+  .git
+  .github
+  doc
+  ★ lua
+    ★ custom
+      ★ plugins
+         ★ autopairs.lua
+         ★ copilot.lua
+         ★ illuminate.lua
+         init.lua
+         ★ null-ls.lua
+         ★ ufold.lua
+    kickstart
+   .gitignore
+   .stylua.toml
+   ✗ init.lua
+   ★ lazy-lock.json
+   LICENSE.md
+   README.md

@@ -15,27 +15,35 @@ return {
   --   vim.cmd.colorscheme 'onedark'
   -- end,
 
-  -- 'rose-pine/neovim',
+  -- "rose-pine/neovim",
   -- priority = 1000,
   -- config = function()
-  --   require('rose-pine').setup {
-  --     variant = 'moon',
-  --     dark_variant = 'moon',
+  --   require("rose-pine").setup({
+  --     variant = "moon",
+  --     dark_variant = "moon",
   --     disable_italics = true,
-  --   }
-  --   vim.cmd.colorscheme 'rose-pine'
+  --   })
+  --   vim.cmd.colorscheme("rose-pine")
   -- end,
 
-  'catppuccin/nvim',
-  name = 'catppuccin',
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
   config = function()
-    require('catppuccin').setup {
-      flavour = 'mocha',
-    }
-    vim.cmd.colorscheme 'catppuccin'
+    require("catppuccin").setup({
+      flavour = "mocha",
+    })
+    vim.cmd.colorscheme("catppuccin")
   end,
 
+  -- {
+  --   "AlexvZyl/nordic.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("nordic").load()
+  --   end,
+  -- },
   -- {
   --   'ribru17/bamboo.nvim',
   --   lazy = false,
@@ -48,18 +56,18 @@ return {
   --   end,
   -- },
 
-  -- 'folke/tokyonight.nvim',
+  -- "folke/tokyonight.nvim",
   -- priority = 1000,
   -- config = function()
-  --   vim.cmd.colorscheme = 'tokyonight'
+  --   vim.cmd.colorscheme = "tokyonight"
   -- end,
   --
-  -- 'rebelot/kanagawa.nvim',
+  -- "rebelot/kanagawa.nvim",
   -- priority = 1000,
   -- config = function()
-  --   require('kanagawa').setup {
+  --   require("kanagawa").setup({
   --     -- theme = 'dragon',
-  --   }
-  --   vim.cmd.colorscheme 'kanagawa-dragon'
+  --   })
+  --   vim.cmd.colorscheme("kanagawa-dragon")
   -- end,
 }

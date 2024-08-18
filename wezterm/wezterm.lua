@@ -87,6 +87,7 @@ return {
     bottom = 0,
   },
   native_macos_fullscreen_mode = true,
+  -- default_cursor_style = "BlinkingBlock",
 
   hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = true,
@@ -95,11 +96,6 @@ return {
   tab_max_width = 64,
 
   leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
-
-  inactive_pane_hsb = {
-    saturation = 0.5,
-    brightness = 0.5,
-  },
 
   color_scheme = "Catppuccin Mocha",
   colors = {

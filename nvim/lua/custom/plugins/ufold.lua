@@ -1,24 +1,24 @@
 return {
-  'kevinhwang91/nvim-ufo',
-  dependencies = { 'kevinhwang91/promise-async' },
-  event = 'BufRead',
+  "kevinhwang91/nvim-ufo",
+  dependencies = { "kevinhwang91/promise-async" },
+  event = "BufRead",
   keys = {
     {
-      'zR',
+      "zR",
       function()
-        require('ufo').openAllFolds()
+        require("ufo").openAllFolds()
       end,
     },
     {
-      'zM',
+      "zM",
       function()
-        require('ufo').closeAllFolds()
+        require("ufo").closeAllFolds()
       end,
     },
     {
-      'K',
+      "K",
       function()
-        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
         if not winid then
           vim.lsp.buf.hover()
         end
@@ -26,12 +26,16 @@ return {
     },
   },
   config = function()
-    vim.o.foldcolumn = '1'
+    vim.o.foldcolumn = "1"
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
-    require('ufo').setup {
-      close_fold_kinds = { 'imports' },
-    }
+    require("ufo").setup({
+      close_fold_kinds_for_ft = {
+        default = { "imports", "comment" },
+        json = { "array" },
+        c = { "comment", "region" },
+      },
+    })
   end,
 }

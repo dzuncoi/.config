@@ -135,6 +135,7 @@ require("lazy").setup({
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
@@ -149,7 +150,7 @@ require("lazy").setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -236,6 +237,12 @@ require("lazy").setup({
     build = ":TSUpdate",
   },
   "windwp/nvim-ts-autotag",
+  { "rasulomaroff/reactive.nvim" },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {},
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -523,17 +530,34 @@ vim.keymap.set("n", "<leader>ua", "<cmd>AerialToggle<CR>", { desc = "Toggle [A]e
 vim.keymap.set("n", "<leader>ub", "<cmd>BlamerToggle<CR>", { desc = "Toggle Git [B]lamer" })
 
 -- document existing key chains
-require("which-key").register({
-  ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-  ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-  ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-  ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
-  ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-  ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-  ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-  ["<leader>t"] = { name = "[T]erminal", _ = "which_key_ignore" },
-  ["<leader>m"] = { name = "LspSaga", _ = "which_key_ignore" },
-  ["<leader>u"] = { name = "[U]tils", _ = "which_key_ignore" },
+-- require("which-key").register({
+--   ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+--   ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+--   ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+--   ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
+--   ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+--   ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+--   ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+--   ["<leader>t"] = { name = "[T]erminal", _ = "which_key_ignore" },
+--   ["<leader>m"] = { name = "LspSaga", _ = "which_key_ignore" },
+--   ["<leader>u"] = { name = "[U]tils", _ = "which_key_ignore" },
+-- })
+
+require("which-key").add({
+  -- { "<leader>c", group = "[C]ode" },
+  -- -- { "<leader>c", group = "[C]ode" },
+  -- { "<leader>c_", hidden = true },
+  { "<leader>b", group = "[b]uffer" },
+  { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+  { "<leader>d", group = "[D]ocument" },
+  { "<leader>g", group = "[G]it" },
+  { "<leader>r", group = "[R]ename" },
+  { "<leader>s", group = "[S]earch" },
+  { "<leader>w", group = "[W]orkspace" },
+  { "<leader>m", group = "Lspsaga" },
+  -- { '<leader>W', group = '[W]indow' },
+  -- { '<leader>T', group = '[T]oggle' },
+  { "<leader>T", group = "[T]termnal" },
 })
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -554,7 +578,8 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
+  -- vtsls = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   eslint = {},
 
@@ -562,6 +587,12 @@ local servers = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+    },
+  },
+  cucumber_language_server = {
+    cucumber = {
+      features = { "e2e/**/*.feature", "features/**/*.feature" },
+      glue = { "e2e/**/*.steps.ts", "features/**/*.steps.ts" },
     },
   },
 }
@@ -648,6 +679,14 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
+  },
+})
+
+require("reactive").setup({
+  builtin = {
+    cursorline = true,
+    cursor = true,
+    modemsg = true,
   },
 })
 

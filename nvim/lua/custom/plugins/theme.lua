@@ -19,9 +19,11 @@ return {
   -- priority = 1000,
   -- config = function()
   --   require("rose-pine").setup({
-  --     variant = "moon",
-  --     dark_variant = "moon",
+  --     variant = "main",
+  --     dark_variant = "main",
   --     disable_italics = true,
+  --     dim_inactive_windows = false,
+  --     extend_background_behind_borders = true,
   --   })
   --   vim.cmd.colorscheme("rose-pine")
   -- end,
@@ -35,7 +37,6 @@ return {
     })
     vim.cmd.colorscheme("catppuccin")
   end,
-
   -- {
   -- "AlexvZyl/nordic.nvim",
   -- lazy = false,

@@ -112,10 +112,10 @@ alias locker_ber1="ssh root@192.168.66.30"
 alias locker_ber2="ssh root@192.168.66.31"
 
 eval "$(starship init zsh)"
-source /Users/huynhxuan/.zsh/fast-syntax-highlighting/F-Sy-H.plugin.zsh
+source $HOME/.config/zsh/fast-syntax-highlighting/F-Sy-H.plugin.zsh
 
 # Load completion config
-source $HOME/.zsh/completion.zsh
+source $HOME/.config/zsh/completion/zsh-completions.plugin.zsh
 
 # Initialize the completion system
 autoload -Uz compinit
@@ -130,8 +130,8 @@ fi
 
 # Enhanced form of menu completion called `menu selection'
 zmodload -i zsh/complist
-source /Users/huynhxuan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /Users/huynhxuan/.zsh/history.zsh
+source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.config/zsh/history/history.zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 eval "$(rbenv init -)"
@@ -139,8 +139,8 @@ eval "$(rbenv init -)"
 source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 # Load pnpm
-export PATH="/Users/huynhxuan/pnpm:$PATH"
-export PNPM_HOME="/Users/huynhxuan/pnpm"
+export PATH="$HOME/pnpm:$PATH"
+export PNPM_HOME="$HOME/pnpm"
 
 # Load nvm
 export NVM_DIR=~/.nvm
@@ -149,7 +149,7 @@ eval "$(rtx activate zsh)"
 eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2023-11-28 15:20:44
-export PATH="$PATH:/Users/huynhxuan/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export BLOQIT_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIwOTI1YTllZGNkMWY3Y2M3ZDBlNDYiLCJ0eXBlIjoicGFydG5lciIsImlhdCI6MTcwMDk0MTM4NiwiZXhwIjoxNzAzNjE5ODE2fQ.RnXpCu9OXMen3qD_hhqq4cFfRa-oy6kPcU6jLnzaW0I"
 
 # CodeWhisperer post block. Keep at the bottom of this file.

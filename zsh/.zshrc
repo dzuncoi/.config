@@ -136,12 +136,10 @@ fi
 # Enhanced form of menu completion called `menu selection'
 zmodload -i zsh/complist
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.config/zsh/history/history.zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 eval "$(rbenv init -)"
 
-source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 # Load pnpm
 export PATH="$HOME/pnpm:$PATH"

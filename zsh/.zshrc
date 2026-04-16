@@ -80,6 +80,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Claude Code plugin root directory
+export CLAUDE_PLUGIN_ROOT="$HOME/.claude"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -145,7 +148,7 @@ export PNPM_HOME="$HOME/pnpm"
 # Load nvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-eval "$(rtx activate zsh)"
+# eval "$(rtx activate zsh)"
 eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2023-11-28 15:20:44
@@ -157,3 +160,4 @@ export BLOQIT_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIwOTI1YT
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+

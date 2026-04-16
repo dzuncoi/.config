@@ -243,6 +243,12 @@ require("lazy").setup({
     event = "BufReadPre",
     opts = {},
   },
+  {
+  "rcarriga/nvim-notify",
+    opts = {
+      timeout = 500, -- duration in ms
+    },
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

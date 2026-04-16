@@ -75,6 +75,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
+-- config.keys = {
+--   {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
+-- }
+
 return {
   check_for_updates = true,
   check_for_updates_interval_seconds = 86400,

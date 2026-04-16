@@ -1,3 +1,5 @@
+# Added by ForgeCode installer
+export PATH="/Users/dung.huynh/.local/bin:$PATH"
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # CodeWhisperer pre block. Keep at the top of this file.
@@ -153,7 +155,6 @@ eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2023-11-28 15:20:44
 export PATH="$PATH:$HOME/.local/bin"
-export BLOQIT_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIwOTI1YTllZGNkMWY3Y2M3ZDBlNDYiLCJ0eXBlIjoicGFydG5lciIsImlhdCI6MTcwMDk0MTM4NiwiZXhwIjoxNzAzNjE5ODE2fQ.RnXpCu9OXMen3qD_hhqq4cFfRa-oy6kPcU6jLnzaW0I"
 
 # CodeWhisperer post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
@@ -161,3 +162,32 @@ export BLOQIT_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIwOTI1YT
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
+# >>> forge initialize >>>
+# !! Contents within this block are managed by 'forge zsh setup' !!
+# !! Do not edit manually - changes will be overwritten !!
+
+# Add required zsh plugins if not already present
+if [[ ! " ${plugins[@]} " =~ " zsh-autosuggestions " ]]; then
+    plugins+=(zsh-autosuggestions)
+fi
+if [[ ! " ${plugins[@]} " =~ " zsh-syntax-highlighting " ]]; then
+    plugins+=(zsh-syntax-highlighting)
+fi
+
+# Load forge shell plugin (commands, completions, keybindings) if not already loaded
+if [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
+    eval "$(forge zsh plugin)"
+fi
+
+# Load forge shell theme (prompt with AI context) if not already loaded
+if [[ -z "$_FORGE_THEME_LOADED" ]]; then
+    eval "$(forge zsh theme)"
+fi
+
+# Editor for editing prompts (set during setup)
+# To change: update FORGE_EDITOR or remove to use $EDITOR
+export FORGE_EDITOR="nvim"
+# <<< forge initialize <<<
+
+# opencode
+export PATH=/Users/dung.huynh/.opencode/bin:$PATH

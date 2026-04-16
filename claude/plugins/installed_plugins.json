@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "plugins": {
+    "ui-ux-pro-max@ui-ux-pro-max-skill": [
+      {
+        "scope": "user",
+        "installPath": "/Users/dung.huynh/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.0.1",
+        "version": "2.0.1",
+        "installedAt": "2026-02-02T08:45:08.141Z",
+        "lastUpdated": "2026-02-02T08:45:08.141Z",
+        "gitCommitSha": "2ba6ca2f1ee68f73ce4fde139f1ede1432054c51"
+      }
+    ],
+    "superpowers@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/dung.huynh/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7",
+        "version": "5.0.7",
+        "installedAt": "2026-03-09T20:31:06.444Z",
+        "lastUpdated": "2026-04-01T07:53:53.665Z",
+        "gitCommitSha": "e4a2375cb705ca5800f0833528ce36a3faf9017a"
+      }
+    ]
+  }
+}

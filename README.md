@@ -31,18 +31,27 @@ Keyboard-driven workflow built around Neovim, a tiling window manager, and a cus
 - **[git](./git/)** — Git configuration
 - **[gh](./gh/)** — GitHub CLI
 - **[raycast](./raycast/)** — Raycast launcher
+- **[claude](./claude/)** — Claude Code global config (CLAUDE.md, settings, agents, rules, skills)
 
 ## Setup
 
-Clone to `~/.config`:
+Clone to `~/.config` and run the install script:
 
 ```sh
 git clone <repo-url> ~/.config
+cd ~/.config
+./install.sh
 ```
+
+`install.sh` creates the necessary symlinks for tools that don't follow XDG:
+
+| Symlink | Points to |
+|---------|-----------|
+| `~/.claude` | `~/.config/claude` |
 
 ### Dependencies
 
-- [Neovim](https://neovim.io/) (latest stable)
+- [Neovim](https://neovim.io/) v0.11.4
 - [AeroSpace](https://github.com/nikitabobko/AeroSpace)
 - [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [JankyBorders](https://github.com/FelixKratz/JankyBorders)

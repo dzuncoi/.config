@@ -1,0 +1,35 @@
+# Runtime & session data
+backups/
+cache/
+debug/
+file-history/
+history.jsonl
+paste-cache/
+projects/
+session-env/
+sessions/
+shell-snapshots/
+tasks/
+telemetry/
+todos/
+
+# Stats & usage
+stats-cache.json
+usage-data/
+
+# Feature flags & policy (fetched at runtime)
+statsig/
+policy-limits.json
+
+# Auto-generated plans (session-specific)
+plans/
+
+# Settings backups
+settings.json.backup-*
+
+# Plugin runtime data (keep installed_plugins.json, blocklist.json)
+plugins/cache/
+plugins/statsig.cached.*
+plugins/install-counts-cache.json
+plugins/marketplaces/
+plugins/known_marketplaces.json

@@ -1,0 +1,5 @@
+[user]
+	name = dzuncoi
+	email = clock.quangdung@gmail.com
+[core]
+	excludesFile = ~/.config/git/ignore

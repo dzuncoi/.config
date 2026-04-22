@@ -35,6 +35,8 @@ Keyboard-driven workflow built around Neovim, a tiling window manager, and a cus
 
 ## Setup
 
+**Prerequisites:** On a fresh Mac, running any `git` command will prompt macOS to install Xcode Command Line Tools. Accept the prompt, wait for it to finish, then proceed with the clone.
+
 Clone to `~/.config` and run the install script:
 
 ```sh

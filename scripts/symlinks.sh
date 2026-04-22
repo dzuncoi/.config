@@ -6,7 +6,7 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "==> Creating symlinks..."
 
 # Claude Code (~/.claude is not XDG-compliant)
-ln -sf "$DOTFILES/claude" "$HOME/.claude"
+ln -sfh "$DOTFILES/claude" "$HOME/.claude"
 echo "  ~/.claude -> $DOTFILES/claude"
 
 # Zsh (sets ZDOTDIR so zsh reads config from ~/.config/zsh/)

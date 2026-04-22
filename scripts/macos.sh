@@ -19,6 +19,6 @@ defaults write com.apple.dock tilesize -int 16
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 echo "==> Restarting Dock and Finder..."
-killall Dock Finder
+killall Dock Finder 2>/dev/null || true
 
 echo "==> macOS settings applied."

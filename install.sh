@@ -1,14 +1,21 @@
 #!/bin/bash
 set -e
 
-DOTFILES="$HOME/.config"
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "Setting up symlinks..."
+echo ""
+echo "=============================="
+echo "  macOS Setup"
+echo "=============================="
+echo ""
 
-# Claude Code (~/.claude is not XDG, needs a symlink)
-ln -sf "$DOTFILES/claude" "$HOME/.claude"
+bash "$DOTFILES/scripts/brew.sh"
+echo ""
 
-# Zsh (~/.zshenv sets ZDOTDIR so zsh reads all config from ~/.config/zsh/)
-ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+bash "$DOTFILES/scripts/symlinks.sh"
+echo ""
 
-echo "Done."
+bash "$DOTFILES/scripts/macos.sh"
+echo ""
+
+bash "$DOTFILES/scripts/remind.sh"

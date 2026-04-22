@@ -1,366 +1,6 @@
 {
-  "alwaysThinkingEnabled" : true,
-  "enabledPlugins" : {
-    "superpowers@claude-plugins-official" : true,
-    "ui-ux-pro-max@ui-ux-pro-max-skill" : true
-  },
-  "extraKnownMarketplaces" : {
-    "superpowers-marketplace" : {
-      "source" : {
-        "repo" : "obra\/superpowers-marketplace",
-        "source" : "github"
-      }
-    }
-  },
-  "hooks" : {
-    "ConfigChange" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "Notification" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "PermissionRequest" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "timeout" : 86400,
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "PostToolUse" : [
-      {
-        "hooks" : [
-          {
-            "command" : "node -e \"const{execSync}=require('child_process');const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){try{execSync('npx prettier --write \"'+p+'\"',{stdio:['pipe','pipe','pipe']})}catch(e){}}console.log(d)})\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\""
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "node -e \"const{execSync}=require('child_process');const fs=require('fs');const path=require('path');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){let dir=path.dirname(p);while(dir!==path.dirname(dir)&&!fs.existsSync(path.join(dir,'tsconfig.json'))){dir=path.dirname(dir)}if(fs.existsSync(path.join(dir,'tsconfig.json'))){try{const r=execSync('npx tsc --noEmit --pretty false 2>&1',{cwd:dir,encoding:'utf8',stdio:['pipe','pipe','pipe']});const lines=r.split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}catch(e){const lines=(e.stdout||'').split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}}}console.log(d)})\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\""
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');const lines=c.split('\\n');const matches=[];lines.forEach((l,idx)=>{if(\/console\\.log\/.test(l))matches.push((idx+1)+': '+l.trim())});if(matches.length){console.error('[Hook] WARNING: console.log found in '+p);matches.slice(0,5).forEach(m=>console.error(m));console.error('[Hook] Remove console.log before committing')}}console.log(d)})\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\""
-      },
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "PostToolUseFailure" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "PreCompact" : [
-      {
-        "hooks" : [
-          {
-            "command" : "node \"${CLAUDE_PLUGIN_ROOT}\/scripts\/hooks\/pre-compact.js\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "auto"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "manual"
-      }
-    ],
-    "PreToolUse" : [
-      {
-        "hooks" : [
-          {
-            "command" : "node \"${CLAUDE_PLUGIN_ROOT}\/scripts\/hooks\/suggest-compact.js\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "tool == \"Edit\" || tool == \"Write\""
-      },
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "SessionEnd" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ]
-      }
-    ],
-    "SessionStart" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ]
-      }
-    ],
-    "Stop" : [
-      {
-        "hooks" : [
-          {
-            "command" : "PROMPT=$(cat \"$transcript_path\" | jq -r '[.[] | select(.role == \"user\")] | last | .content \/\/ \"No prompt found\"' | head -c 100); osascript -e \"display notification \\\"$PROMPT\\\" with title \\\"Claude Code - Finished\\\"\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : ""
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "node \"${CLAUDE_PLUGIN_ROOT}\/scripts\/hooks\/evaluate-session.js\"",
-            "type" : "command"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ]
-      }
-    ],
-    "SubagentStart" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "SubagentStop" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ]
-      }
-    ],
-    "TaskCompleted" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "TeammateIdle" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "UserPromptSubmit" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      },
-      {
-        "hooks" : [
-          {
-            "command" : "python3 ~\/.claude\/hooks\/buddi-hook.py",
-            "type" : "command"
-          }
-        ]
-      }
-    ],
-    "WorktreeCreate" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ],
-    "WorktreeRemove" : [
-      {
-        "hooks" : [
-          {
-            "type" : "http",
-            "url" : "http:\/\/localhost:47821\/hook"
-          }
-        ],
-        "matcher" : "*"
-      }
-    ]
-  },
-  "permissions" : {
-    "allow" : [
+  "permissions": {
+    "allow": [
       "Bash(npm create:*)",
       "Bash(npm install:*)",
       "Bash(pnpm install:*)",
@@ -370,12 +10,12 @@
       "Bash(pnpm electron:dev:*)",
       "Bash(node install.js:*)",
       "Bash(npm rebuild:*)",
-      "Bash(npx @electron\/rebuild:*)",
+      "Bash(npx @electron/rebuild:*)",
       "Bash(ollama list:*)",
       "Bash(git add:*)",
       "mcp__sequential-thinking__sequentialthinking",
       "Skill(ui-ux-pro-max:ui-ux-pro-max)",
-      "Read(\/\/Users\/dung.huynh\/.claude\/plugins\/marketplaces\/ui-ux-pro-max-skill\/.claude\/**)",
+      "Read(//Users/dung.huynh/.claude/plugins/marketplaces/ui-ux-pro-max-skill/.claude/**)",
       "Bash(python3:*)",
       "Bash(pnpm run build:*)",
       "Bash(tee:*)",
@@ -385,12 +25,12 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nrebrand: Rename app from Rize to Dzync\n\n- Update package.json: app name, appId, productName, and database paths\n- Update HTML title and favicon to use new Dzync branding\n- Create cyberpunk-style DZ SVG icon with gradient and animations\n- Add DzyncIcon React component for TopBar usage\n- Update TopBar to display new icon and DZYNC title\n- Update Electron tray tooltip and permission dialogs\n- Change database filename from rize-tracker.db to dzync-tracker.db\n\nNew branding features:\n- Cyberpunk-style \"DZ\" icon with cyan-purple-pink gradient\n- Animated SVG with glitch effects, energy particles, and scanline\n- Simplified React component version for TopBar\n- Consistent branding across all app surfaces\nEOF\n)\")",
       "Bash(git commit:*)",
       "Skill(electron)",
-      "Read(\/\/Users\/dung.huynh\/.agents\/skills\/electron\/**)",
+      "Read(//Users/dung.huynh/.agents/skills/electron/**)",
       "Bash(tree:*)",
       "Bash(pnpm test:run:*)",
-      "Read(\/\/Applications\/Dzync.app\/Contents\/Resources\/app.asar.unpacked\/node_modules\/**)",
-      "Read(\/\/Users\/dung.huynh\/pnpm\/global\/5\/node_modules\/**)",
-      "Read(\/\/Users\/dung.huynh\/pnpm\/**)",
+      "Read(//Applications/Dzync.app/Contents/Resources/app.asar.unpacked/node_modules/**)",
+      "Read(//Users/dung.huynh/pnpm/global/5/node_modules/**)",
+      "Read(//Users/dung.huynh/pnpm/**)",
       "Bash(pnpm build:*)",
       "Bash(codesign:*)",
       "Bash(sqlite3:*)",
@@ -419,16 +59,372 @@
       "Bash(pip3 install:*)",
       "Bash(curl:*)"
     ],
-    "ask" : [
-
+    "deny": [],
+    "ask": [],
+    "defaultMode": "default"
+  },
+  "hooks": {
+    "ConfigChange": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
     ],
-    "defaultMode" : "default",
-    "deny" : [
-
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py",
+            "timeout": 86400
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){try{execSync('npx prettier --write \"'+p+'\"',{stdio:['pipe','pipe','pipe']})}catch(e){}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');const path=require('path');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){let dir=path.dirname(p);while(dir!==path.dirname(dir)&&!fs.existsSync(path.join(dir,'tsconfig.json'))){dir=path.dirname(dir)}if(fs.existsSync(path.join(dir,'tsconfig.json'))){try{const r=execSync('npx tsc --noEmit --pretty false 2>&1',{cwd:dir,encoding:'utf8',stdio:['pipe','pipe','pipe']});const lines=r.split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}catch(e){const lines=(e.stdout||'').split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');const lines=c.split('\\n');const matches=[];lines.forEach((l,idx)=>{if(/console\\.log/.test(l))matches.push((idx+1)+': '+l.trim())});if(matches.length){console.error('[Hook] WARNING: console.log found in '+p);matches.slice(0,5).forEach(m=>console.error(m));console.error('[Hook] Remove console.log before committing')}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/hooks/pre-compact.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      },
+      {
+        "matcher": "manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Edit\" || tool == \"Write\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/hooks/suggest-compact.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PROMPT=$(cat \"$transcript_path\" | jq -r '[.[] | select(.role == \"user\")] | last | .content // \"No prompt found\"' | head -c 100); osascript -e \"display notification \\\"$PROMPT\\\" with title \\\"Claude Code - Finished\\\"\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/hooks/evaluate-session.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/buddi-hook.py"
+          }
+        ]
+      }
+    ],
+    "WorktreeCreate": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
+    ],
+    "WorktreeRemove": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:47821/hook"
+          }
+        ]
+      }
     ]
   },
-  "statusLine" : {
-    "command" : "bash \"$HOME\/.claude\/statusline.sh\"",
-    "type" : "command"
-  }
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true
 }

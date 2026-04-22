@@ -43,11 +43,13 @@ cd ~/.config
 ./install.sh
 ```
 
-`install.sh` creates the necessary symlinks for tools that don't follow XDG:
+`install.sh` runs four steps automatically:
+1. **Homebrew** — installs Homebrew if absent, then runs `brew bundle install`
+2. **Symlinks** — creates `~/.claude`, `~/.zshenv`, `~/.wezterm.lua`
+3. **macOS settings** — applies trackpad, Dock, and Finder preferences
+4. **Checklist** — prints manual steps (SSH key, git credentials, App Store sign-in)
 
-| Symlink | Points to |
-|---------|-----------|
-| `~/.claude` | `~/.config/claude` |
+Each `scripts/*.sh` can also be run independently.
 
 ### Dependencies
 

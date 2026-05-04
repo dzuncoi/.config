@@ -148,7 +148,7 @@ export PNPM_HOME="$HOME/pnpm"
 # Load nvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-# eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2023-11-28 15:20:44

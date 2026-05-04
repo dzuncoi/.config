@@ -45,17 +45,18 @@ cd ~/.config
 ./install.sh
 ```
 
-`install.sh` runs four steps automatically:
+`install.sh` runs five steps automatically:
 1. **Homebrew** — installs Homebrew if absent, then runs `brew bundle install`
-2. **Symlinks** — creates `~/.claude`, `~/.zshenv`, `~/.wezterm.lua`
-3. **macOS settings** — applies trackpad, Dock, and Finder preferences
-4. **Checklist** — prints manual steps (SSH key, git credentials, App Store sign-in)
+2. **mise** — installs version-pinned tools from `.mise.toml` (e.g. Neovim 0.11.4)
+3. **Symlinks** — creates `~/.claude`, `~/.zshenv`, `~/.wezterm.lua`
+4. **macOS settings** — applies trackpad, Dock, and Finder preferences
+5. **Checklist** — prints manual steps (SSH key, git credentials, App Store sign-in)
 
 Each `scripts/*.sh` can also be run independently.
 
 ### Dependencies
 
-- [Neovim](https://neovim.io/) v0.11.4
+- [Neovim](https://neovim.io/) v0.11.4 (installed and pinned via [mise](https://mise.jdx.dev/))
 - [AeroSpace](https://github.com/nikitabobko/AeroSpace)
 - [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [JankyBorders](https://github.com/FelixKratz/JankyBorders)

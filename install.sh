@@ -10,6 +10,7 @@ echo "=============================="
 echo ""
 echo "WARNING: This script will:"
 echo "  - Install/update Homebrew packages from Brewfile"
+echo "  - Install tools via mise (e.g. Neovim)"
 echo "  - Overwrite ~/.claude, ~/.zshenv, ~/.wezterm.lua with symlinks"
 echo "  - Apply macOS defaults (trackpad, Dock, Finder)"
 echo ""
@@ -23,6 +24,9 @@ fi
 echo ""
 
 bash "$DOTFILES/scripts/brew.sh"
+echo ""
+
+bash "$DOTFILES/scripts/mise.sh"
 echo ""
 
 bash "$DOTFILES/scripts/symlinks.sh"

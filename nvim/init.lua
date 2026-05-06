@@ -386,6 +386,7 @@ vim.defer_fn(function()
       "tsx",
       "javascript",
       "typescript",
+      "vue",
       "vimdoc",
       "vim",
       "bash",
@@ -585,6 +586,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   ts_ls = {},
+  vue_ls = {},
   -- vtsls = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   eslint = {},
@@ -617,6 +619,9 @@ mason_lspconfig.setup({
   ensure_installed = vim.tbl_keys(servers),
 })
 
+local vue_typescript_plugin_path = require("mason-registry").get_package("vue-language-server"):get_install_path()
+  .. "/node_modules/@vue/typescript-plugin"
+
 mason_lspconfig.setup_handlers({
   function(server_name)
     require("lspconfig")[server_name].setup({
@@ -624,6 +629,23 @@ mason_lspconfig.setup_handlers({
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+    })
+  end,
+  ["ts_ls"] = function()
+    require("lspconfig").ts_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers.ts_ls,
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vue_typescript_plugin_path,
+            languages = { "vue" },
+          },
+        },
+      },
+      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
     })
   end,
 })

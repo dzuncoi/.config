@@ -1,5 +1,5 @@
 # Added by ForgeCode installer
-export PATH="/Users/dung.huynh/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # CodeWhisperer pre block. Keep at the top of this file.
@@ -188,4 +188,4 @@ export FORGE_EDITOR="nvim"
 # <<< forge initialize <<<
 
 # opencode
-export PATH=/Users/dung.huynh/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH

@@ -9,6 +9,7 @@ echo "  macOS Setup"
 echo "=============================="
 echo ""
 echo "WARNING: This script will:"
+echo "  - Initialize git submodules (zsh plugins)"
 echo "  - Install/update Homebrew packages from Brewfile"
 echo "  - Install tools via mise (e.g. Neovim)"
 echo "  - Overwrite ~/.claude, ~/.zshenv, ~/.wezterm.lua with symlinks"
@@ -21,6 +22,10 @@ if [[ ! "$reply" =~ ^[Yy]$ ]]; then
   echo "Aborted."
   exit 0
 fi
+echo ""
+
+echo "==> Initializing git submodules..."
+git -C "$DOTFILES" submodule update --init --recursive
 echo ""
 
 bash "$DOTFILES/scripts/brew.sh"

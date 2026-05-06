@@ -117,7 +117,7 @@ alias locker_ber1="ssh root@192.168.66.30"
 alias locker_ber2="ssh root@192.168.66.31"
 
 eval "$(starship init zsh)"
-source $HOME/.config/zsh/fast-syntax-highlighting/F-Sy-H.plugin.zsh
+source $HOME/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Load completion config
 source $HOME/.config/zsh/completion/zsh-completions.plugin.zsh

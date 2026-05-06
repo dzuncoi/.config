@@ -586,7 +586,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   ts_ls = {},
-  vue_ls = {},
+  volar = {},
   -- vtsls = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   eslint = {},

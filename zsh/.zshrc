@@ -189,3 +189,4 @@ export FORGE_EDITOR="nvim"
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
+

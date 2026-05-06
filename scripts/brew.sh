@@ -15,6 +15,6 @@ if ! command -v brew &>/dev/null; then
 fi
 
 echo "==> Installing packages from Brewfile..."
-brew bundle install --file="$DOTFILES/Brewfile"
+brew bundle install --verbose --file="$DOTFILES/Brewfile"
 
 echo "==> Homebrew setup complete."

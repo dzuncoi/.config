@@ -47,7 +47,7 @@ cd ~/.config
 
 `install.sh` runs five steps automatically:
 1. **Homebrew** — installs Homebrew if absent, then runs `brew bundle install`
-2. **mise** — installs version-pinned tools from `.mise.toml` (e.g. Neovim 0.11.4)
+2. **mise** — installs version-pinned tools from `mise/config.toml` (e.g. Neovim 0.11.4)
 3. **Symlinks** — creates `~/.claude`, `~/.zshenv`, `~/.wezterm.lua`
 4. **macOS settings** — applies trackpad, Dock, and Finder preferences
 5. **Checklist** — prints manual steps (SSH key, git credentials, App Store sign-in)

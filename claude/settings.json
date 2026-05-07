@@ -426,5 +426,6 @@
       }
     }
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "theme": "dark"
 }

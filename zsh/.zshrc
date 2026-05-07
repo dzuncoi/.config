@@ -109,6 +109,7 @@ export CLAUDE_PLUGIN_ROOT="$HOME/.claude"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ll='ls -lG'
 alias brew86="arch -x86_64 brew"
 alias v="nvim"
 alias locker_vil2="ssh root@192.168.40.94"
